@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/c13a07f3cd.js" crossorigin="anonymous"></script>
+    <style>
+
+        #toast {
+            position: fixed;
+            top: 10px;
+            left: 5px;
+            z-index: 999;
+        }
+
+        .toast {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 2px;
+            padding: 5px 0;
+            min-width: 400px;
+            max-width: 450px;
+            border-left: 4px solid #47d864;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+            transition: all linear 0.5s;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+            opacity: 0;
+            transform: translateX(calc(100% + 32px));
+            }
+            to {
+            opacity: 1;
+            transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeOut {
+            to {
+            opacity: 0;
+            }
+        }
+        .toast__icon {
+            font-size: 20px;
+
+
+        }
+
+        .toast--success {
+            border-color: #47d864;
+        }
+        
+        .toast--success .toast__icon {
+            color: #47d864;
+        }
+        
+        .toast--info {
+            border-color: #2f86eb;
+        }
+        
+        .toast--info .toast__icon {
+            color: #2f86eb;
+        }
+        
+        .toast__icon,
+        .toast__close {
+            padding: 0 16px;
+        }
+        .toast__body {
+            flex-grow: 1;
+        }
+        .toast__msg {
+            font-size: 14px;
+            color: #888;
+            margin: 10px;
+            line-height: 1.5;
+        }
+
+        .toast__close {
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="toast"></div>
+    <script>
+        toast({
+        message: "Đã thêm giỏ hàng thành công.",
+        type: "success",
+        duration: 3000
+      });
+        // Icon message 
+
+        var icon = document.querySelectorAll(".home-product-item__img-icon")
+
+
+        function toast({  message = "", type = "info", duration = 3000 }) {
+            const main = document.getElementById("toast");
+            if (main) {
+            const toast = document.createElement("div");
+        
+            // Auto remove toast
+            const autoRemoveId = setTimeout(function () {
+                main.removeChild(toast);
+            }, duration + 1000);
+        
+            // Remove toast when clicked
+            toast.onclick = function (e) {
+                if (e.target.closest(".toast__close")) {
+                main.removeChild(toast);
+                clearTimeout(autoRemoveId);
+                }
+            };
+        
+            const icons = {
+                success: "fa-solid fa-cart-shopping",
+                info: "fas fa-info-circle"
+
+            };
+            const icon = icons[type];
+            const delay = (duration / 1000).toFixed(2);
+        
+            toast.classList.add("toast", `toast--${type}`);
+            toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+        
+            toast.innerHTML = `
+                            <div class="toast__icon">
+                                <i class="${icon}"></i>
+                            </div>
+                            <div class="toast__body">
+                                <p class="toast__msg">${message}</p>
+                            </div>
+                            <div class="toast__close">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        `;
+            main.appendChild(toast);
+            }
+        }
+
+    </script>
+</body>
+</html>

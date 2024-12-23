@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const phones = [
+            {
+                name: 'Samsung Galaxy S10',
+                price : 1700,
+                brand: 'Samsung',
+                ram: "32GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Ford S21',
+                price : 600,
+                brand: 'Samsung',
+                ram: "32GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Iphone 12',
+                price : 2700,
+                brand: 'Iphone',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Galaxy S22',
+                price : 1200,
+                brand: 'Samsung',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Ford Zip',
+                price : 1500,
+                brand: 'Samsung',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Iphone 13',
+                price : 5500,
+                brand: 'Iphone',
+                ram: "32GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Iphone 14',
+                price : 2700,
+                brand: 'Iphone',
+                ram: "64GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Iphone 15',
+                price : 7200,
+                brand: 'Iphone',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Galaxy S10',
+                price : 1700,
+                brand: 'Samsung',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Galaxy S101',
+                price : 700,
+                brand: 'Samsung',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Galaxy S102',
+                price : 700,
+                brand: 'Samsung',
+                ram: "8GB",
+                capacity: "128GB"
+            },
+            {
+                name: 'Samsung Galaxy S103',
+                price : 700,
+                brand: 'Iphone',
+                ram: "8GB",
+                capacity: "128GB"
+            },{
+                name: 'Samsung Galaxy S104',
+                price : 700,
+                brand: 'Samsung',
+                ram: "8GB",
+                capacity: "128GB"
+            }
+        ]
+
+
+        const options = {
+            brand: ['Samsung', 'Iphone'],
+            ram: ['32GB'],
+            capacity: ['128GB'],
+            minPrice: 0,
+            maxPrice: 0,
+        }
+
+        function handleFilter(options) {
+            const result = phones.filter(phone => {
+                return (
+                    (!options.brand.length || options.brand.includes(phone.brand)) &&
+                    (!options.ram.length || options.ram.includes(phone.ram)) &&
+                    (!options.capacity.length || options.capacity.includes(phone.capacity)) &&
+                    (!options.minPrice || phone.price >= options.minPrice) &&
+                    (!options.maxPrice || phone.price <= options.maxPrice)
+                )
+            })
+
+            console.log(result)
+        }
+
+        handleFilter(options);
+
+
+
+    </script>
+</body>
+</html>

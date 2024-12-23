@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #slide {
+        width: 80%;
+        background-color: antiquewhite;
+        height: 300px;
+        display: flex;
+        gap: 12px;
+        animation: loop 5s linear infinite;
+      }
+      .item {
+        width: 200px;
+        height: 200px;
+      }
+      @keyframes loop {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="slide">
+      <div
+        class="item"
+        style="
+          background-image: url(https://img5.thuthuatphanmem.vn/uploads/2021/11/10/hinh-anh-chiec-meo-cute_042939175.jpg);
+        "
+      ></div>
+      <div
+        class="item"
+        style="
+          background-image: url(https://khoinguonsangtao.vn/wp-content/uploads/2022/08/anh-meme-meo-cute-de-thuong.jpg);
+        "
+      ></div>
+      <div
+        class="item"
+        style="
+          background-image: url(https://demoda.vn/wp-content/uploads/2022/03/anh-cute-meo-le-luoi.jpg);
+        "
+      ></div>
+      <div
+        class="item"
+        style="
+          background-image: url(https://th.bing.com/th/id/OIP.KdRE7KHqL-46M8nrvOX2CgAAAA?rs=1&pid=ImgDetMain);
+        "
+      ></div>
+      <div
+        class="item"
+        style="
+          background-image: url(https://th.bing.com/th/id/OIP.Il3J75oh8s7jPfmlx4KnjAHaER?rs=1&pid=ImgDetMain);
+        "
+      ></div>
+    </div>
+    <button id="next">Next</button>
+    <button id="prev">Prev</button>
+    <!-- <button onclick="use()" id="">alert</button> -->
+    <script>
+      document.getElementById("next").onclick = () => {
+        let lists = document.querySelectorAll(".item");
+        document.getElementById("slide").appendChild(lists[0]);
+      };
+      document.getElementById("prev").onclick = () => {
+        let lists = document.querySelectorAll(".item");
+        document.getElementById("slide").prepend(lists[lists.length - 1]);
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function use() {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+      }
+    </script>
+  </body>
+</html>

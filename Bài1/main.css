@@ -1,0 +1,154 @@
+.container{
+    width: 800px;
+    height: 600px;
+    background-color: #ffffff;
+    position: absolute;
+    display: flex;
+    right:21%;
+    top: 60px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 60px 1px rgba(0, 0, 0, 0.4)
+  
+}
+body{
+    /* background-color: #bdc3c7; */
+    position: relative;
+}
+
+.word-main{
+    font-size: 40px;
+    margin-top: 50px;
+    margin-left: 80px;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+
+}
+.underline{
+    text-decoration: underline;
+}
+.image{
+    flex: 1;
+}
+.sign-up{
+    margin-left: 50px;
+    flex: 1;
+}
+.user input{
+    bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
+  width: 82%;
+  background: transparent;
+  transition: all .25s ease;
+
+}
+
+.user input:focus{
+    outline: none;
+    border-bottom: 1px solid #0d095e;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+
+}
+
+.email input{
+    bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
+  width: 82%;
+  background: transparent;
+  transition: all .25s ease;
+
+}
+.email input:focus{
+    outline: none;
+    border-bottom: 1px solid #0d095e;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+
+}
+
+.pass input{
+    bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
+  width: 82%;
+  background: transparent;
+  transition: all .25s ease;
+
+}
+.pass input:focus{
+    outline: none;
+    border-bottom: 1px solid #0d095e;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+
+}
+
+
+.repeat-pass input{
+    bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
+  width: 82%;
+  background: transparent;
+  transition: all .25s ease;
+
+}
+
+.repeat-pass input:focus{
+    outline: none;
+    border-bottom: 1px solid #0d095e;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+
+}
+
+.user{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.email{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.pass{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.repeat-pass{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.button{
+    font-size: 16px;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.register{
+    border: none;
+    width: 150px;
+    height: 70px;
+    margin-left: 90px;
+    margin-top: 60px;
+    color: white;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-top: 25px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #579EE6;
+    cursor: pointer;
+    transition: .3s ;
+}
+
+.register:hover{
+    background-color:#2980b9;
+}
+
+.word{
+    text-align: center;
+}

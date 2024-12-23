@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Bài Viết</title>
+    <!-- Thêm thư viện CKEditor -->
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.23.0-lts/full/ckeditor.js"></script>    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+</head>
+<body>
+    <h2>Thêm Bài Viết</h2>s
+    <form onsubmit="return layNoiDung()">
+        <label for="title">Tiêu Đề:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <!-- Thêm trường ẩn để giữ nội dung CKEditor -->
+        <input type="hidden" id="content" name="content" value="">
+
+        <!-- Hiển thị trình soạn thảo CKEditor -->
+        <textarea name="editor1"></textarea>
+
+        <input type="submit" value="Đăng Bài">
+    </form>
+
+    <!-- Hiển thị dữ liệu nhận được -->
+    <div id="hienThiDuLieu"></div>
+
+    <script>
+        CKEDITOR.replace( 'editor1' );
+</script>
+</body>
+</html>

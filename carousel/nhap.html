@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Reusable Slider</title>
+  
+  <link href="
+  https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+  " rel="stylesheet">
+  <script src="
+  https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+  "></script>
+  <style>
+   /* Reset CSS */
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+/* Slider styles */
+.slider-container {
+  max-width: 800px;
+  margin: 50px auto;
+  overflow: hidden;
+}
+
+.slide {
+  position: relative;
+}
+
+.slideshow-container {
+  position: relative;
+}
+
+.mySlider img {
+  width: 100%; /* Hình ảnh sẽ nằm trong container và giữ nguyên tỉ lệ khung hình */
+  height: auto; /* Đảm bảo tỉ lệ khung hình được giữ nguyên */
+}
+
+.fader {
+  display: none;
+  animation: fade 1.5s ease-in-out infinite;
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  20%, 80% {
+    opacity: 1;
+  }
+}
+
+.slideshow-left {
+  float: left;
+  width: 70%;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.dotss {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+  </style>
+</head>
+<body>
+  <!-- <div class="slider-container" id="slider1">
+    <div class="don">
+      <div class="slide">
+        <div class="splide">
+          <div class="slideshow-left">
+            <div class="slideshow-container">
+              <div class="mySlider fader">
+                <img src="https://via.placeholder.com/800x400?text=Nature+1" alt="" width="100%" height="100%">
+              </div>
+              <div class="mySlider fader">
+                <img src="https://via.placeholder.com/800x400?text=Nature+2" alt="">
+              </div>
+              <div class="mySlider fader">
+                <img src="https://via.placeholder.com/800x400?text=Nature+3" alt="">
+              </div>
+              <a class="prev" onclick="sliderManager('slider1', -1)">❮</a>
+              <a class="next" onclick="sliderManager('slider1', 1)">❯</a>
+              <div class="dotss" style="text-align: center">
+                <span class="dot" onclick="currentSlider('slider1', 1)"></span>
+                <span class="dot" onclick="currentSlider('slider1', 2)"></span>
+                <span class="dot" onclick="currentSlider('slider1', 3)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-container" id="slider2">
+    <div class="don">
+      <div class="slide">
+        <div class="slideshow">
+          <div class="slideshow-left">
+            <div class="slideshow-container">
+              <div class="mySlider fader">
+                <img src="https://via.placeholder.com/800x400?text=Nature+4" alt="" width="100%" height="100%">
+              </div>
+              <div class="mySlider fader">
+                <img src="https://via.placeholder.com/800x400?text=Nature+5" alt="">
+              </div>
+              <div class="mySlider fader">
+                <img src="https://via.placeholder.com/800x400?text=Nature+6" alt="">
+              </div>
+              <a class="prev" onclick="sliderManager('slider2', -1)">❮</a>
+              <a class="next" onclick="sliderManager('slider2', 1)">❯</a>
+              <div class="dotss" style="text-align: center">
+                <span class="dot" onclick="currentSlider('slider2', 1)"></span>
+                <span class="dot" onclick="currentSlider('slider2', 2)"></span>
+                <span class="dot" onclick="currentSlider('slider2', 3)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <section class="splide" aria-label="Slide Container Example">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <div class="splide__slide__container">
+            <img src="https://th.bing.com/th/id/R.7e45c4e4c36741efe19f15088fd7d96c?rik=upgWnTKuKZVcBw&riu=http%3a%2f%2f1.bp.blogspot.com%2f-O-S8oYcdPIs%2fT1_h5pA2ikI%2fAAAAAAAAAFU%2fiiBbQtx4BDw%2fs1600%2f430042_180377352078534_141014142681522_279330_694088594_n.jpg&ehk=3%2bWAZaE5DD1ekBonioH5E5ufk%2bMs%2bP7FrNh%2f7pZGedQ%3d&risl=&pid=ImgRaw&r=0">
+          </div>
+          Lorem Ipsum Dolor Sit Amet
+        </li>
+        <li class="splide__slide">
+          <div class="splide__slide__container">
+            <img src="https://th.bing.com/th/id/R.e789a2fde3de6a3da50ef5a041702782?rik=wqez5GoF5Ke9jA&riu=http%3a%2f%2fhoangyentravel.com%2fen%2fwp-content%2fuploads%2f2018%2f10%2f2306e52d579f401d909f24e5b6bc4719.jpg&ehk=qeEZXYrRzqDWMCgkR9WWN5zLBDf1pTIXf9mVF6NOiHU%3d&risl=&pid=ImgRaw&r=0">
+          </div>
+          Lorem Ipsum Dolor Sit Amet
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script >
+
+function sliderManager(sliderId, n) {
+  clearTimeout(window[sliderId].timer);
+  showSlider(sliderId, window[sliderId].slideIndex += n);
+}
+
+function currentSlider(sliderId, n) {
+  clearTimeout(window[sliderId].timer);
+  showSlider(sliderId, window[sliderId].slideIndex = n);
+}
+
+function showSlider(sliderId, n) {
+  let i;
+  let slider = document.getElementById(sliderId).getElementsByClassName("mySlider");
+  let dots = document.getElementById(sliderId).getElementsByClassName("dot");
+  if (n > slider.length) {window[sliderId].slideIndex = 1}
+  if (n < 1) {window[sliderId].slideIndex = slider.length}
+  for (i = 0; i < slider.length; i++) {
+    slider[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slider[window[sliderId].slideIndex-1].style.display = "block";
+  dots[window[sliderId].slideIndex-1].className += " active";
+
+  window[sliderId].timer = setTimeout(function() {
+    sliderManager(sliderId, 1);
+  }, 3000);
+}
+
+// Slider 1
+window.slider1 = {
+  slideIndex: 1,
+  timer: null
+};
+showSlider('slider1', 1);
+
+// Slider 2
+window.slider2 = {
+  slideIndex: 1,
+  timer: null
+};
+showSlider('slider2', 1);
+
+  </script>
+  <script>
+    new Splide( '.splide', {
+  type       : 'loop',
+  height     : '9rem',
+  perPage    : 2,
+  breakpoints: {
+    640: {
+      height: '6rem',
+    },
+  },
+} );
+  </script>
+</body>
+</html>

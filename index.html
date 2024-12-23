@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .attribute {
+            margin-bottom: 20px;
+        }
+        .attribute label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .attribute .options {
+            display: flex;
+            gap: 10px;
+        }
+        .option {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .option.disabled {
+            background-color: #f8d7da;
+            color: #721c24;
+            cursor: not-allowed;
+        }
+        .option.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity input {
+            width: 50px;
+            text-align: center;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="product">
+        <h1>Chọn sản phẩm</h1>
+        <div class="attribute">
+            <label for="size">Kích thước:</label>
+            <div class="options" id="size-options">
+                <!-- Các tùy chọn kích thước sẽ được thêm ở đây -->
+            </div>
+        </div>
+        <div class="attribute">
+            <label for="color">Màu sắc:</label>
+            <div class="options" id="color-options">
+                <!-- Các tùy chọn màu sắc sẽ được thêm ở đây -->
+            </div>
+        </div>
+        <div class="quantity">
+            <button id="decrease">-</button>
+            <input type="number" id="quantity" value="1" min="1">
+            <button id="increase">+</button>
+        </div>
+        <div class="total">
+            Tổng: <span id="total-price">0</span> VND
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu sản phẩm (giả sử)
+        const productData = {
+            price: 100000, // Giá mỗi sản phẩm
+            stock: {
+                S: { Red: 3, Blue: 2 },
+                M: { Red: 5, Blue: 0 },
+                L: { Red: 0, Blue: 0 }
+            }
+        };
+
+        const sizeOptionsContainer = document.getElementById('size-options');
+        const colorOptionsContainer = document.getElementById('color-options');
+        const quantityInput = document.getElementById('quantity');
+        const totalPriceEl = document.getElementById('total-price');
+        const decreaseButton = document.getElementById('decrease');
+        const increaseButton = document.getElementById('increase');
+
+        let selectedSize = null;
+        let selectedColor = null;
+        let maxQuantity = 0;
+
+        // Render các tùy chọn kích thước
+        function renderSizeOptions() {
+            sizeOptionsContainer.innerHTML = '';
+            Object.keys(productData.stock).forEach(size => {
+                const stockForSize = Object.values(productData.stock[size]).reduce((sum, qty) => sum + qty, 0);
+                const option = document.createElement('div');
+                option.classList.add('option');
+                option.textContent = `${size} (${stockForSize} cái)`;
+
+                if (stockForSize === 0) {
+                    option.classList.add('disabled');
+                } else {
+                    option.addEventListener('click', (event) => selectSize(event, size));
+                }
+
+                sizeOptionsContainer.appendChild(option);
+            });
+        }
+
+        // Render các tùy chọn màu sắc
+        function renderColorOptions() {
+            colorOptionsContainer.innerHTML = '';
+            if (!selectedSize) return;
+
+            const colors = productData.stock[selectedSize];
+            Object.entries(colors).forEach(([color, stock]) => {
+                const option = document.createElement('div');
+                option.classList.add('option');
+                option.textContent = `${color} (${stock} cái)`;
+
+                if (stock === 0) {
+                    option.classList.add('disabled');
+                } else {
+                    option.addEventListener('click', (event) => selectColor(event, color, stock));
+                }
+
+                colorOptionsContainer.appendChild(option);
+            });
+        }
+
+        // Chọn kích thước
+        function selectSize(event, size) {
+            selectedSize = size;
+            selectedColor = null;
+            maxQuantity = 0;
+            quantityInput.value = 1;
+
+            // Cập nhật giao diện
+            document.querySelectorAll('#size-options .option').forEach(option => option.classList.remove('selected'));
+            event.target.classList.add('selected');
+
+            renderColorOptions();
+            updateTotalPrice();
+        }
+
+        // Chọn màu sắc
+        function selectColor(event, color, stock) {
+            selectedColor = color;
+            maxQuantity = stock;
+            quantityInput.value = 1;
+
+            // Cập nhật giao diện
+            document.querySelectorAll('#color-options .option').forEach(option => option.classList.remove('selected'));
+            event.target.classList.add('selected');
+
+            updateTotalPrice();
+        }
+
+        // Cập nhật tổng giá
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value);
+            const totalPrice = quantity * productData.price;
+            totalPriceEl.textContent = totalPrice.toLocaleString();
+        }
+
+        // Giới hạn số lượng nhập
+        quantityInput.addEventListener('input', () => {
+            let quantity = parseInt(quantityInput.value);
+
+            if (isNaN(quantity) || quantity < 1) {
+                quantity = 1;
+            } else if (quantity > maxQuantity) {
+                quantity = maxQuantity;
+            }
+
+            quantityInput.value = quantity;
+            updateTotalPrice();
+        });
+
+        // Nút tăng/giảm số lượng
+        decreaseButton.addEventListener('click', () => {
+            let quantity = parseInt(quantityInput.value);
+            if (quantity > 1) {
+                quantityInput.value = quantity - 1;
+                updateTotalPrice();
+            }
+        });
+
+        increaseButton.addEventListener('click', () => {
+            let quantity = parseInt(quantityInput.value);
+            if (quantity < maxQuantity) {
+                quantityInput.value = quantity + 1;
+                updateTotalPrice();
+            }
+        });
+
+        // Khởi tạo giao diện
+        renderSizeOptions();
+    </script>
+</body>
+</html>
