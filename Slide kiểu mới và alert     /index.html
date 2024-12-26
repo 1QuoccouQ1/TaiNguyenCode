@@ -10,22 +10,13 @@
         background-color: antiquewhite;
         height: 300px;
         display: flex;
-        gap: 12px;
-        animation: loop 5s linear infinite;
+        gap: 12px; 
       }
       .item {
         width: 200px;
         height: 200px;
       }
-      @keyframes loop {
-        0% {
-          transform: translateX(0);
-        }
-
-        100% {
-          transform: translateX(-50%);
-        }
-      }
+      
     </style>
   </head>
   <body>
@@ -64,6 +55,16 @@
     <button id="next">Next</button>
     <button id="prev">Prev</button>
     <!-- <button onclick="use()" id="">alert</button> -->
+     <details style="width: max-content;">
+       <summary>
+        <img src="https://th.bing.com/th/id/OIP.Il3J75oh8s7jPfmlx4KnjAHaER?rs=1&pid=ImgDetMain" alt="">
+       </summary>
+       <ul>
+        <li>HIh</li>
+        <li>HIh</li>
+        <li>HIh</li>
+       </ul>
+     </details>
     <script>
       document.getElementById("next").onclick = () => {
         let lists = document.querySelectorAll(".item");
