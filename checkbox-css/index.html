@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* Flex container */
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Text container */
+      .text-container {
+        font-size: 16px;
+      }
+
+      .title {
+        font-weight: 500;
+      }
+
+      .description {
+        font-size: 12px;
+        color: #a3a3a3;
+      }
+
+      /* Switch container */
+      .switch-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .switch-container input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Switch styles */
+      .switch {
+        width: 2.75rem; /* 44px */
+        height: 1.5rem; /* 24px */
+        background-color: #f82e2e;
+        border-radius: 9999px;
+        position: relative;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .switch::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 1.25rem; /* 20px */
+        height: 1.25rem; /* 20px */
+        background-color: white;
+        border-radius: 9999px;
+        border: 1px solid #d1d1d1;
+        transition: transform 0.2s ease-in-out,
+          background-color 0.2s ease-in-out;
+      }
+
+      /* Checked state */
+      .switch-container input:checked + .switch {
+        background-color: #6c5dd3;
+      }
+
+      .switch-container input:checked + .switch::after {
+        transform: translateX(1.25rem); /* Move 20px */
+        background-color: white;
+        border-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="text-container">
+        <p class="title">Công khai</p>
+        <p class="description">Mọi người có thể nhìn thấy playlist này</p>
+      </div>
+      <label class="switch-container">
+        <input type="checkbox" class="sr-only" checked />
+        <div class="switch"></div>
+      </label>
+    </div>
+  </body>
+</html>
