@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide Effect - Fixed</title>
+  <style>
+    #slide {
+      width: 80%;
+      overflow: hidden;
+      height: 300px;
+      position: relative;
+    }
+
+    .wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .item {
+      min-width: 100%;
+      height: 300px; /* Đặt chiều cao */
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="slide">
+    <div class="wrapper">
+      <!-- Bản sao của ảnh cuối -->
+      <div
+        class="item"
+        style="background-image: url(https://th.bing.com/th/id/OIP.Il3J75oh8s7jPfmlx4KnjAHaER?rs=1&pid=ImgDetMain);"
+      ></div>
+
+      <!-- Các ảnh thật -->
+      <div
+        class="item"
+        style="background-image: url(https://img5.thuthuatphanmem.vn/uploads/2021/11/10/hinh-anh-chiec-meo-cute_042939175.jpg);"
+      ></div>
+      <div
+        class="item"
+        style="background-image: url(https://khoinguonsangtao.vn/wp-content/uploads/2022/08/anh-meme-meo-cute-de-thuong.jpg);"
+      ></div>
+      <div
+        class="item"
+        style="background-image: url(https://demoda.vn/wp-content/uploads/2022/03/anh-cute-meo-le-luoi.jpg);"
+      ></div>
+      <div
+        class="item"
+        style="background-image: url(https://th.bing.com/th/id/OIP.KdRE7KHqL-46M8nrvOX2CgAAAA?rs=1&pid=ImgDetMain);"
+      ></div>
+      <div
+        class="item"
+        style="background-image: url(https://th.bing.com/th/id/OIP.Il3J75oh8s7jPfmlx4KnjAHaER?rs=1&pid=ImgDetMain);"
+      ></div>
+
+      <!-- Bản sao của ảnh đầu -->
+      <div
+        class="item"
+        style="background-image: url(https://img5.thuthuatphanmem.vn/uploads/2021/11/10/hinh-anh-chiec-meo-cute_042939175.jpg);"
+      ></div>
+    </div>
+  </div>
+  <button id="next">Next</button>
+  <button id="prev">Prev</button>
+
+  <script>
+    const slide = document.querySelector(".wrapper");
+    const items = document.querySelectorAll(".item");
+    const totalItems = items.length;
+    let currentIndex = 1;
+
+    slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    function updateSlide(index) {
+      slide.style.transition = "transform 0.5s ease-in-out";
+      slide.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function handleLoop() {
+      if (currentIndex === 0) {
+        slide.style.transition = "none";
+        currentIndex = totalItems - 2;
+        slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      if (currentIndex === totalItems - 1) {
+        slide.style.transition = "none";
+        currentIndex = 1;
+        slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+    }
+
+    document.getElementById("next").onclick = () => {
+      currentIndex++;
+      updateSlide(currentIndex);
+      setTimeout(handleLoop, 500);
+    };
+
+    document.getElementById("prev").onclick = () => {
+      currentIndex--;
+      updateSlide(currentIndex);
+      setTimeout(handleLoop, 500);
+    };
+  </script>
+</body>
+</html>
